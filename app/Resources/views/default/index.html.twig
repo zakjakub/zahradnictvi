@@ -1,0 +1,53 @@
+{# app/Resources/views/default/index.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <h1>Přehledy</h1>
+
+    <h2>Nezaplacené a nevyřízené objednávky</h2>
+    <p><a href='{{ path('order_notprocessed') }}'>Nevyřízené objednávky</a></p>
+    <p><a href='{{ path('order_notpaid') }}'>Nezaplacené objednávky</a></p>
+    <br><br>
+
+    <h2>Objednávky v rozsahu</h2>
+    <form name="orders_range" action="{{ path('order_range') }}" method="get" class="editform">
+        <div>
+            <label for="ordersRangeStart">Začátek</label>
+            <input type="date" id="ordersRangeStart" name="ordersRangeStart" required="required">
+        </div>
+        <div>
+            <label for="ordersRangeEnd">Konec</label>
+            <input type="date" id="ordersRangeEnd" name="ordersRangeEnd" required="required">
+        </div>
+        <input class="bigbutton" style="background-color:#00FF33;" type="submit" value="Zobrazit"></input>
+    </form>
+    <br><br>
+
+    <h2>Obrat za měsíc</h2>
+    <form name="obrat_month" action="{{ path('obrat_month') }}" method="get" class="editform">
+        <div>
+            <label for="month">Měsíc</label>
+            <input type="month" id="month" name="month" required="required">
+        </div>
+        <input class="bigbutton" style="background-color:#00FF33;" type="submit" value="Zobrazit"></input>
+    </form>
+    <br><br>
+
+
+    <h2>Obrat v rozsahu</h2>
+    <form name="obrat_range" action="{{ path('obrat_range') }}" method="get" class="editform">
+        <div>
+            <label for="obratRangeStart">Začátek</label>
+            <input type="date" id="obratRangeStart" name="obratRangeStart" required="required">
+        </div>
+        <div>
+            <label for="obratRangeEnd">Konec</label>
+            <input type="date" id="obratRangeEnd" name="obratRangeEnd" required="required">
+        </div>
+        <input class="bigbutton" style="background-color:#00FF33;" type="submit" value="Zobrazit"></input>
+    </form>
+    <br><br>
+
+
+{% endblock %}

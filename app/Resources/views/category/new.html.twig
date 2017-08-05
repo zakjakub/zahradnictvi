@@ -1,0 +1,15 @@
+{# app/Resources/views/category/new.html.twig #}
+{% extends 'category/category.html.twig' %}
+
+{% block content %}
+
+    <h2>Nová kategorie zboží</h2>
+
+    {{ form_start(form, {'attr': {'class': 'editform'}}) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+
+{% endblock %}
+
+
+

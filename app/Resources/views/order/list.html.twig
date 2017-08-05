@@ -1,0 +1,49 @@
+{# app/Resources/views/order/list.html.twig #}
+{% extends 'order/order.html.twig' %}
+
+{% block content %}
+
+    <h2>Výpis objednávek</h2>
+
+    <div class=beforetablebutton>
+        <a href='{{ path('new_order') }}' title='Vytvoření nové objednávky'>
+            <i class='fa fa-pencil'></i> Nová objednávka
+        </a>
+    </div>
+    <div class=listWrapper>
+        <table class=list>
+            <tr>
+                <th>ID</th>
+                <th>Jméno</th>
+                <th>Produkty</th>
+                <th></th>
+            </tr>
+            {% for order in orders %}
+                <tr>
+                    <td><a href='{{ path('one_order', {'orderId': order.id}) }}'>{{ order.id }}</a></td>
+                    <td>{{ order.customer.name }}</td>
+                    <td>
+                        <ul>
+                            {% for product in order.orderProducts %}
+                                <li>{{ product.amount }}x {{ product.name }}</li>
+                            {% endfor %}
+                        </ul>
+                    </td>
+                    <td class="flags">
+                        <span>
+                        <span><a href='{{ path('edit_order',
+                            {'orderId': order.id}) }}'><i class='fa fa-pencil'></i></a></span>
+                        <span><a href='{{ path('delete_order',
+                            {'orderId': order.id}) }}'><i class='fa fa-trash-o'></i></a></span>
+                        </span>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan=4>Nebyly nalezeny žádné objednávky.</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+{% endblock %}

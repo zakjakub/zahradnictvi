@@ -1,0 +1,89 @@
+{# app/Resources/views/order/new.html.twig #}
+{% extends 'order/order.html.twig' %}
+
+{% block content %}
+
+    <h2>Nová objednávka</h2>
+    {#
+        {{ form_start(form, {'attr': {'class': 'editform'}}) }}
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
+    #}
+
+
+
+    {{ form_start(form, {'attr': {'class': 'editform'}}) }}
+
+    <ul id="product-fields-list"
+        data-prototype="{{ form_widget(form.orderProducts.vars.prototype)|e }}">
+        {% for orderProductField in form.orderProducts %}
+            <li>
+                {{ form_errors(orderProductField) }}
+                {{ form_widget(orderProductField) }}
+            </li>
+        {% endfor %}
+    </ul>
+
+    <a href="#" id="add-another-product">Přidat další položku</a>
+
+    {{ form_end(form) }}
+
+    <script type="text/javascript">
+
+        function addTagFormDeleteLink($productFormLi) {
+            var $removeFormA = $('<a href="#">Odebrat položku</a>');
+            $productFormLi.append($removeFormA);
+
+            $removeFormA.on('click', function (e) {
+                // prevent the link from creating a "#" on the URL
+                e.preventDefault();
+
+                // remove the li for the tag form
+                $productFormLi.remove();
+            });
+        }
+
+        // keep track of how many email fields have been rendered
+        var productCount = '{{ form.orderProducts|length }}';
+
+
+        jQuery(document).ready(function () {
+
+            // Get the ul that holds the collection of tags
+            $collectionHolder = $('ul#product-fields-list');
+
+            // add a delete link to all of the existing tag form li elements
+            $collectionHolder.find('li').each(function () {
+                addTagFormDeleteLink($(this));
+            });
+
+
+            jQuery('#add-another-product').click(function (e) {
+                e.preventDefault();
+
+                var productList = jQuery('#product-fields-list');
+
+                // grab the prototype template
+                var newWidget = productList.attr('data-prototype');
+                // replace the "__name__" used in the id and name of the prototype
+                // with a number that's unique to your emails
+                // end name attribute looks like name="contact[emails][2]"
+                newWidget = newWidget.replace(/__name__/g, productCount);
+                productCount++;
+
+                // create a new list element and add it to the list
+                var newLi = jQuery('<li></li>').html(newWidget);
+
+                newLi.appendTo(productList);
+
+                // add a delete link to the new form
+                addTagFormDeleteLink(newLi);
+            });
+        })
+    </script>
+
+
+{% endblock %}
+
+
+

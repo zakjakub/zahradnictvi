@@ -1,0 +1,43 @@
+{# app/Resources/views/customer/list.html.twig #}
+{% extends 'customer/customer.html.twig' %}
+
+{% block content %}
+
+    <h2>Výpis zákazníků</h2>
+
+    <div class=beforetablebutton>
+        <a href='{{ path('new_customer') }}' title='Vytvoření nového zákazníka'>
+            <i class='fa fa-pencil'></i> Nový zákazník
+        </a>
+    </div>
+    <div class=listWrapper>
+        <table class=list>
+            <tr>
+                <th>Jméno</th>
+                <th>Město</th>
+                <th>Částka</th>
+                <th></th>
+            </tr>
+            {% for customer in customers %}
+                <tr>
+                    <td><a href='{{ path('one_customer', {'customerId': customer.id}) }}'>{{ customer.name }}</a></td>
+                    <td>{{ customer.city }}</td>
+                    <td>{{ customer.totalPrice }},- Kč</td>
+                    <td class="flags">
+                        <span>
+                        <span><a href='{{ path('edit_customer',
+                            {'customerId': customer.id}) }}'><i class='fa fa-pencil'></i></a></span>
+                        <span><a href='{{ path('delete_customer',
+                            {'customerId': customer.id}) }}'><i class='fa fa-trash-o'></i></a></span>
+                        </span>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan=4>Nebyli nalezeny žádní zákazníci.</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,14 @@
+{# app/Resources/views/product/list.html.twig #}
+{% extends 'product/product.html.twig' %}
+
+{% block content %}
+
+    <h2>Přehled produktu</h2>
+
+    <h3>{{ product.name }}</h3>
+    <p><strong>Kategorie:</strong> {{ product.category.name }}</p>
+    <p><strong>Cena:</strong> {{ product.price }},- Kč</p>
+
+
+
+{% endblock %}

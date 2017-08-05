@@ -1,0 +1,57 @@
+{# app/Resources/views/order/list.html.twig #}
+{% extends 'order/order.html.twig' %}
+
+{% block content %}
+
+    <h2>Přehled objednávky</h2>
+
+    <h3>{{ order.customer }}</h3>
+
+    {{ order.customer.street }}
+    {{ order.customer.houseNumber }}<br>
+    {{ order.customer.city }}
+    {{ order.customer.postalCode }}<br>
+    {{ order.customer.email }}<br>
+    {{ order.customer.phone }}<br>
+
+    <h3>Informace</h3>
+
+    <p><strong>Datum objednávky:</strong> {{ order.date|date("d.m.Y") }}</p>
+    <p><strong>Datum zpracování:</strong> {{ order.processed is empty ? "nezaplaceno" : order.processed|date("d.m.Y") }}</p>
+    <p><strong>Datum zaplacení:</strong> {{ order.payment is empty ? "nezaplaceno" : order.payment|date("d.m.Y") }}</p>
+
+    <h3>Produkty</h3>
+
+    <div class=listWrapper>
+        <table class=list>
+            <tr>
+                <th>Název</th>
+                <th>Kategorie</th>
+                <th>Počet</th>
+                <th>Cena</th>
+            </tr>
+            {% for orderProduct in order.orderProducts %}
+                <tr>
+                    <td><a href='{{ path('one_product',
+                        {'productId': orderProduct.product.id}) }}'>{{ orderProduct.product.name }}</a></td>
+                    <td><a href='{{ path('one_category',
+                        {'categoryId': orderProduct.product.category.id}) }}'>{{ orderProduct.product.category.name }}</a></td>
+                    <td>{{ orderProduct.amount }}</td>
+                    <td>{{ orderProduct.product.price }},- Kč</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan=4>Nebyly nalezeny žádné položky.</td>
+                </tr>
+            {% endfor %}
+            <tr>
+                <td colspan=2><strong>Celkem</strong></td>
+                <td>{{ order.amount }}</td>
+                <td>{{ order.price }},- Kč</td>
+            </tr>
+        </table>
+    </div>
+
+
+
+{% endblock %}

@@ -1,0 +1,31 @@
+# This file is a "template" of what your parameters.yml file should look like
+# Set parameters here that may be different on each deployment target of the app, e.g. development, staging, production.
+# http://symfony.com/doc/current/best_practices/configuration.html#infrastructure-related-configuration
+parameters:
+    database_host:     127.0.0.1
+    database_port:     ~
+    database_name:     symfony
+    database_user:     root
+    database_password: ~
+    # You should uncomment this if you want use pdo_sqlite
+    # database_path: "%kernel.root_dir%/data.db3"
+
+    mailer_transport:  smtp
+    mailer_host:       127.0.0.1
+    mailer_user:       ~
+    mailer_password:   ~
+
+    # A secret key that's used to generate certain security-related tokens
+    secret:            ThisTokenIsNotSoSecretChangeIt
+
+    ## my global parameters
+    site_name: Zahradnicví DOVY
+    site_author: Jakub Žák, http://jakubzak.eu
+    site_copyright: Jakub Žák
+    site_designer: Jakub Žák, http://jakubzak.eu
+    site_robots: noindex,nofollow
+    site_description: Systém pro správu zahradnictví, projekt do předmětu DOVY
+    site_keywords: upol,kmi,inf,dovy,dovednosti,vývojáře
+    site_generator: Kubův IS
+    site_language: cs-cz
+    site_year: 2016

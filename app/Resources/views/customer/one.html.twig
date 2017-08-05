@@ -1,0 +1,21 @@
+{# app/Resources/views/default/list.customer.html.twig #}
+{% extends 'customer/customer.html.twig' %}
+
+{% block content %}
+
+    <h2>Přehled zákazníka</h2>
+
+    <h3>{{ customer.name }}</h3>
+    <p><strong>Ulice:</strong> {{ customer.street }}</p>
+    <p><strong>Číslo popisné:</strong> {{ customer.houseNumber }}</p>
+    <p><strong>Město:</strong> {{ customer.city }}</p>
+    <p><strong>PSČ:</strong> {{ customer.postalCode }}</p>
+    <p><strong>E-mail:</strong> {{ customer.email }}</p>
+    <p><strong>Telefon:</strong> {{ customer.phone }}</p>
+
+    <h3>Statistika</h3>
+    <p><strong>Objednávky:</strong> {{ customer.totalPrice }},- Kč</p>
+    <p><strong>Platby:</strong> {{ customer.totalPayment }},- Kč</p>
+
+
+{% endblock %}

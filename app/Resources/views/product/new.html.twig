@@ -1,0 +1,15 @@
+{# app/Resources/views/product/new.html.twig #}
+{% extends 'product/product.html.twig' %}
+
+{% block content %}
+
+    <h2>Nový produkt</h2>
+
+    {{ form_start(form, {'attr': {'class': 'editform'}}) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+
+{% endblock %}
+
+
+

@@ -1,0 +1,15 @@
+{# app/Resources/views/customer/new.html.twig #}
+{% extends 'customer/customer.html.twig' %}
+
+{% block content %}
+
+    <h2>Nový zákazník</h2>
+
+    {{ form_start(form, {'attr': {'class': 'editform'}}) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+
+{% endblock %}
+
+
+

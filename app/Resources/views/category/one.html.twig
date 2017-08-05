@@ -1,0 +1,71 @@
+{# app/Resources/views/category/list.html.twig #}
+{% extends 'category/category.html.twig' %}
+
+{% block content %}
+
+    <h2>Přehled kategorie</h2>
+
+    <h3>{{ category.name }}</h3>
+    <p><strong>Přehled produktů:</strong> <a href='{{ path('category_products',
+        {'categoryId': category.id}) }}'>produkty ({{ category.products.count }})</a></p>
+
+
+    <h3>Nejvíce prodávané</h3>
+
+    <div class=listWrapper>
+        <table class=list>
+            <tr>
+                <th>Název</th>
+                <th>Kategorie</th>
+                <th>Prodáno</th>
+                <th></th>
+            </tr>
+            {% for product in category.mostSold %}
+                <tr>
+                    <td><a href='{{ path('one_product', {'productId': product.id}) }}'>{{ product.name }}</a></td>
+                    <td><a href='{{ path('one_category',
+                        {'categoryId': product.category.id}) }}'>{{ product.category.name }}</a></td>
+                    <td>{{ product.soldAmount }} ks za {{ product.soldPrice }},- Kč</td>
+                    <td><a href='{{ path('edit_product',
+                        {'productId': product.id}) }}'><i class='fa fa-pencil'></i></a></td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan=4>Nebyly nalezeny žádné výrobky.</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+
+    <h3>Nejméně prodávané</h3>
+
+    <div class=listWrapper>
+        <table class=list>
+            <tr>
+                <th>Název</th>
+                <th>Kategorie</th>
+                <th>Prodáno</th>
+                <th></th>
+            </tr>
+            {% for product in category.lessSold %}
+                <tr>
+                    <td><a href='{{ path('one_product', {'productId': product.id}) }}'>{{ product.name }}</a></td>
+                    <td><a href='{{ path('one_category',
+                        {'categoryId': product.category.id}) }}'>{{ product.category.name }}</a></td>
+                    <td>{{ product.soldAmount }} ks za {{ product.soldPrice }},- Kč</td>
+                    <td><a href='{{ path('edit_product',
+                        {'productId': product.id}) }}'><i class='fa fa-pencil'></i></a></td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan=4>Nebyly nalezeny žádné výrobky.</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+
+
+
+{% endblock %}

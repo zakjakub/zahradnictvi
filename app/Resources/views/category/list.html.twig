@@ -1,0 +1,42 @@
+{# app/Resources/views/category/list.html.twig #}
+{% extends 'category/category.html.twig' %}
+
+{% block content %}
+
+    <h2>Výpis kategorií</h2>
+
+    <div class=beforetablebutton>
+        <a href='{{ path('new_category') }}' title='Vytvoření nové kategorie zboží'>
+            <i class='fa fa-pencil'></i> Nová kategorie
+        </a>
+    </div>
+    <div class=listWrapper>
+        <table class=list>
+            <tr>
+                <th>Název</th>
+                <th>Počet položek</th>
+                <th></th>
+            </tr>
+            {% for category in categories %}
+                <tr>
+                    <td><a href='{{ path('one_category', {'categoryId': category.id}) }}'>{{ category.name }}</a></td>
+                    <td><a href='{{ path('category_products',
+                        {'categoryId': category.id}) }}'>{{ category.products.count }}</a></td>
+                    <td class="flags">
+                        <span>
+                        <span><a href='{{ path('edit_category',
+                            {'categoryId': category.id}) }}'><i class='fa fa-pencil'></i></a></span>
+                        <span><a href='{{ path('delete_category',
+                            {'categoryId': category.id}) }}'><i class='fa fa-trash-o'></i></a></span>
+                        </span>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan=3>Nebyly nalezeny žádné kategorie.</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+{% endblock %}

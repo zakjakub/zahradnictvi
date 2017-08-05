@@ -1,0 +1,89 @@
+{# app/Resources/views/base.html.twig #}
+
+<!DOCTYPE html>
+<html lang="{{ site_language }}" dir="ltr" itemscope itemtype="http://schema.org/WebPage"
+      prefix="og: http://ogp.me/ns#">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="UTF-8">
+    <meta name="author" content="{{ site_author }}">
+    <meta property="copyright" content="{{ site_copyright }}">
+    <meta name="generator" content="{{ site_generator }}">
+    <meta name="Description" content="{{ site_description }}">
+    <meta name="Keywords" content="{{ site_keywords }}">
+    <meta name="Designer" content="{{ site_designer }}">
+    <meta name="Revisit-After" content="1 day">
+    <meta name="DC.Language" content="{{ site_language }}">
+    <meta name="robots" content="{{ site_robots }}">
+    <meta property="og:description" content="{{ site_name }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="{{ site_name }}">
+    <meta name="application-name" content="{{ site_name }}">
+    <meta name="msapplication-TileColor" content="#006FAD">
+    <meta name="theme-color" content="#006FAD">
+    <meta name='HandheldFriendly' content='True'>
+    <meta itemprop="name" content="{{ site_name }}">
+    <meta itemprop="description" content="{{ site_name }}">
+    <meta itemprop="author" content="{{ site_author }}">
+    <meta itemprop="inLanguage" content="{{ site_language }}">
+    <meta property="og:type" content="website">
+    <script src="{{ asset('old-js/javascript-concentrated.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('old-css/normalize.min.css') }}">
+    <link rel="stylesheet" id="font-awesome-css" href="{{ asset('old-css/font-awesome.min.css') }}" media="all">
+    <link rel=stylesheet type=text/css href='{{ asset('old-css/main.css') }}' media='screen'>
+    <link rel=stylesheet type=text/css href='{{ asset('old-css/print.css') }}' media='print'>
+    <link rel="stylesheet" href="{{ asset('old-css/jquery-ui.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('old-css/jquery-ui.theme.min.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0">
+    <title>{{ site_name }}</title>
+</head>
+<body>
+<header>
+    <span><a href="{{ url('homepage') }}" title="{{ site_name }}"></a></span>
+    <span><a href="{{ url('homepage') }}" title="{{ site_name }}"></a></span>
+</header>
+<header>
+    <nav>
+        <input type="checkbox" id="button">
+        <label for="button" onclick></label>
+        <ul>
+            <li><a href='{{ path('customer') }}' title=''>Zákazníci</a></li>
+            <li><a href='{{ path('category') }}' title=''>Kategorie</a></li>
+            <li><a href='{{ path('product') }}' title=''>Produkty</a></li>
+            <li><a href='{{ path('order') }}' title=''>Objednávky</a></li>
+            <style>
+                html header:nth-child(2) nav ul li {
+                    width: 25%;
+                }
+            </style>
+        </ul>
+    </nav>
+</header>
+<div id="container">
+    <main>
+        {% block body %}
+            <h1>Výstup</h1>
+            <p>Your lucky number is <strong>{{ number }}</strong>.</p>
+        {% endblock %}
+    </main>
+</div>
+<br>
+<footer>
+<span id=paticka_webmaster>
+    <a href="http://jakubzak.eu" title="ZAKZAKZAK">Webmaster je Kuba</a>
+</span>
+    <span id=paticka_copyright>
+        &copy; <a href="http://jakubzak.eu" title="Kuba má web.">{{ site_copyright }}</a>, {{ site_year }}
+</span>
+    <span id=paticka_facebook>
+        <a href='https://fb.com.com/zakjakub' rel='nofollow' target='_blank'
+           title='Naleznete nás i na sociální síti Facebook!'>Tento web na Facebooku</a>
+</span>
+</footer>
+{% block javascripts %}
+{% endblock %}
+</body>
+</html>
